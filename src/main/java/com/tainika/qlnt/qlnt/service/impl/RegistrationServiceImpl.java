@@ -36,6 +36,6 @@ public class RegistrationServiceImpl implements RegistrationService {
         } catch (Exception err) {
             return new Result<>(Message.ACTION.SIGN_UP, err.getMessage(), null).error();
         }
-        return new Result<>(Message.ACTION.SIGN_UP, Message.ALERT.USER_EXISTED, null).error();
+        return new Result<>(Message.ACTION.SIGN_UP, Message.ALERT.USER_EXISTED, null).failure();
     }
 }

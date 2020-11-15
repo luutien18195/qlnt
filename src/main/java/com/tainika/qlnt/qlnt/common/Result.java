@@ -25,13 +25,19 @@ public class Result<T> {
     }
 
     public Result<T> success() {
-        this.responseMessage = String.format(Message.LOG.ACTION_SUCCESS, action, content);
+        this.responseMessage = String.format(Message.LOG.ACTION_SUCCESS.getName(), action, content);
+        log.info(responseMessage);
+        return this;
+    }
+
+    public Result<T> failure() {
+        this.responseMessage = String.format(Message.LOG.ACTION_FAIL.getName(), action, content);
         log.info(responseMessage);
         return this;
     }
 
     public Result<T> error() {
-        this.responseMessage = String.format(Message.LOG.ACTION_FAIL, action, content);
+        this.responseMessage = String.format(Message.LOG.ACTION_ERROR.getName(), action, content);
         log.error(responseMessage);
         return this;
     }

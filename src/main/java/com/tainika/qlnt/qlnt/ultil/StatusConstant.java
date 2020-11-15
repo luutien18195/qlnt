@@ -39,4 +39,11 @@ public interface StatusConstant {
             return null;
         }
     }
+
+    interface ROLE {
+        String ADMIN = "ADMIN";
+        String MANAGER = "MANAGER";
+        String USER = "ROLE_USER";
+        String GUEST = "GUEST";
+    }
 }

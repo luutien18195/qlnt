@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class RegistrationController {
     RegistrationService registrationService;
 
     @PostMapping("/rs0001")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> signup(@RequestBody User newUser){
         Result<?> result = registrationService.signUp(newUser);
         if(result.getItem()==null) {
