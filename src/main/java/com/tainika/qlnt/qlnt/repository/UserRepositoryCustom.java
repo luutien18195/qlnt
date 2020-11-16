@@ -4,5 +4,7 @@ import com.tainika.qlnt.qlnt.model.User;
 
 public interface UserRepositoryCustom {
 
-    boolean checkUserNameAndIdentityNumber(String userName, String idNumber);
+    boolean isExistedUserName(String userName);
+
+    boolean isExistedEmail(String email);
 }

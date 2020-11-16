@@ -14,11 +14,20 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public boolean checkUserNameAndIdentityNumber(String userName, String idNumber) {
+    public boolean isExistedUserName(String userName) {
         final Query query = new Query();
         Criteria criteria = Criteria
-                .where("userName").regex(userName, "i")
-                .and("identityNumber").is(idNumber);
+                .where("userName").regex(userName, "i");
+        query.addCriteria(criteria);
+
+        return this.mongoTemplate.count(query, User.class) > 0;
+    }
+
+    @Override
+    public boolean isExistedEmail(String email) {
+        final Query query = new Query();
+        Criteria criteria = Criteria
+                .where("userName").is(email);
         query.addCriteria(criteria);
 
         return this.mongoTemplate.count(query, User.class) > 0;

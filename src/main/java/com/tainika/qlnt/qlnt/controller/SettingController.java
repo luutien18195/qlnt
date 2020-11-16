@@ -1,6 +1,6 @@
 package com.tainika.qlnt.qlnt.controller;
 
-import com.tainika.qlnt.qlnt.common.Result;
+import com.tainika.qlnt.qlnt.service.MessageResultService;
 import com.tainika.qlnt.qlnt.model.User;
 import com.tainika.qlnt.qlnt.service.SettingService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +22,10 @@ public class SettingController {
 
     @GetMapping(path = "/ss0002")
     public ResponseEntity<?> findAllUser() {
-        Result<List<User>> result = settingService.getAllUser();
-        if (result.getItem().isEmpty()) {
-            return new ResponseEntity<>(result.getResponseMessage(), HttpStatus.OK);
+        MessageResultService<List<User>> messageResultService = settingService.getAllUser();
+        if (messageResultService.getItem().isEmpty()) {
+            return new ResponseEntity<>(messageResultService.getResponseMessage(), HttpStatus.OK);
         }
-        return new ResponseEntity<>(result.getItem(), HttpStatus.OK);
+        return new ResponseEntity<>(messageResultService.getItem(), HttpStatus.OK);
     }
 }

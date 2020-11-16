@@ -31,5 +31,7 @@ public interface Message {
 
     interface ALERT {
         String USER_EXISTED = "User existed";
+        String EMAIL_EXISTED = "Email existed";
+        String UNKNOWN_REASON = "Unknown reason";
     }
 }
