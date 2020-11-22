@@ -1,5 +1,6 @@
 package com.tainika.qlnt.qlnt.service;
 
+import com.tainika.qlnt.qlnt.constants.AppUserRole;
 import com.tainika.qlnt.qlnt.model.Role;
 import com.tainika.qlnt.qlnt.model.User;
 import com.tainika.qlnt.qlnt.repository.UserRepository;
@@ -45,12 +46,12 @@ public class RegistrationService {
             user.setUpdateTime(new Date());
             user.setStatus(Status.USER.TEMPORARY.getCode());
 
-            MessageResultService<?> msListRole = roleService.findByRoleCode(user.getRole().getCode());
+            MessageResultService<?> msListRole = roleService.findByRoleCode(AppUserRole.GUEST.getCode());
             if (msListRole.getStatus().equals(Status.COMMON.ERROR)) {
                 return new MessageResultService<>(Message.ACTION.SIGN_UP, msListRole.getResponseMessage() ,null)
                         .widthFailureResponse();
             } else if (msListRole.getStatus().equals(Status.COMMON.FAILURE)) {
-                MessageResultService<?> msRole = roleService.create(user.getRole().getCode());
+                MessageResultService<?> msRole = roleService.create(AppUserRole.GUEST.getCode());
 
                 if (msRole.getStatus().equals(Status.COMMON.ERROR)) {
                     return new MessageResultService<>(Message.ACTION.SIGN_UP, msRole.getResponseMessage() ,null)
