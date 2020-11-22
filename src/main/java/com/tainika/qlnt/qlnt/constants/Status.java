@@ -1,6 +1,6 @@
-package com.tainika.qlnt.qlnt.ultil;
+package com.tainika.qlnt.qlnt.constants;
 
-public interface StatusConstant {
+public interface Status {
     enum USER{
         TEMPORARY(0, "Tạm thời"),
         ACTIVE(1, "Hoạt động"),
@@ -40,10 +40,9 @@ public interface StatusConstant {
         }
     }
 
-    interface ROLE {
-        String ADMIN = "ADMIN";
-        String MANAGER = "MANAGER";
-        String USER = "ROLE_USER";
-        String GUEST = "GUEST";
+    interface COMMON {
+        Integer SUCCESS = 0;
+        Integer FAILURE = 1;
+        Integer ERROR = 2;
     }
 }

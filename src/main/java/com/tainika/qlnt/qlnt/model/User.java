@@ -2,18 +2,16 @@ package com.tainika.qlnt.qlnt.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 @Data
-@Document(collection="User")
+@Document(collection="user")
 public class User {
     @Id
     private String id;
-    private String roleId;
-    private String roleName;
+    private Role role;
     private String roomId;
     private String roomName;
     private String userName;
@@ -32,7 +30,7 @@ public class User {
     private String identityImagePath;
     private Integer status;
     private Integer isBlackList;
-    private Integer accepterId;
+    private Integer acceptorId;
     private Date createTime;
     private Date updateTime;
 }

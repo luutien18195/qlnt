@@ -1,8 +1,10 @@
 package com.tainika.qlnt.qlnt.model;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@Document(collection="room")
 public class Room {
     public String id;
     public String name;

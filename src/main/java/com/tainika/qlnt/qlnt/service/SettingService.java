@@ -2,7 +2,7 @@ package com.tainika.qlnt.qlnt.service;
 
 import com.tainika.qlnt.qlnt.model.User;
 import com.tainika.qlnt.qlnt.repository.UserRepository;
-import com.tainika.qlnt.qlnt.ultil.Message;
+import com.tainika.qlnt.qlnt.constants.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

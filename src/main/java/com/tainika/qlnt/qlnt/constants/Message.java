@@ -1,4 +1,4 @@
-package com.tainika.qlnt.qlnt.ultil;
+package com.tainika.qlnt.qlnt.constants;
 
 public interface Message {
     enum LOG {
@@ -27,11 +27,19 @@ public interface Message {
         String SIGN_UP = "Sign up";
         String SIGN_IN = "Sign in";
         String GET_ALL = "Get all";
+
+        String SEARCH = "Search";
+
+        String CREATE = "Create";
+        String READ = "Read";
+        String UPDATE = "Update";
+        String DELETE = "Delete";
     }
 
     interface ALERT {
         String USER_EXISTED = "User existed";
         String EMAIL_EXISTED = "Email existed";
         String UNKNOWN_REASON = "Unknown reason";
+        String NO_RESULT = "No results are returned";
     }
 }
