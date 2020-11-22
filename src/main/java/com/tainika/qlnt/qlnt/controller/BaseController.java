@@ -1,7 +1,7 @@
 package com.tainika.qlnt.qlnt.controller;
 
-import com.tainika.qlnt.qlnt.model.AuthRequest;
-import com.tainika.qlnt.qlnt.model.AuthResponse;
+import com.tainika.qlnt.qlnt.dto.AuthRequest;
+import com.tainika.qlnt.qlnt.dto.AuthResponse;
 import com.tainika.qlnt.qlnt.service.UserLoginDetailsService;
 import com.tainika.qlnt.qlnt.ultil.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;

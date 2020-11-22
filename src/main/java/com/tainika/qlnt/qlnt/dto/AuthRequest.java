@@ -1,4 +1,4 @@
-package com.tainika.qlnt.qlnt.model;
+package com.tainika.qlnt.qlnt.dto;
 
 public class AuthRequest {
     private String username;
