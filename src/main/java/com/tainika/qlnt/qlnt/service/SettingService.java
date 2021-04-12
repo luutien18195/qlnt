@@ -16,9 +16,9 @@ public class SettingService {
 
     public MessageResultService<List<User>> getAllUser() {
         try{
-            return new MessageResultService<>(Message.ACTION.GET_ALL, userRepository.findAll()).widthSuccessResponse();
+            return new MessageResultService<>(Message.ACTION.GET_ALL, userRepository.findAll()).withSuccessResponse();
         } catch (Exception err) {
-            return new MessageResultService<List<User>>(Message.ACTION.GET_ALL, err.getMessage(), new ArrayList<>()).widthErrorResponse();
+            return new MessageResultService<List<User>>(Message.ACTION.GET_ALL, err.getMessage(), new ArrayList<>()).withErrorResponse();
         }
     }
 }

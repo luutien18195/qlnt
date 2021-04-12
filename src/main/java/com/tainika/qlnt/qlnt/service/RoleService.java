@@ -8,7 +8,6 @@ import com.tainika.qlnt.qlnt.repository.RoleRepository;
 import com.tainika.qlnt.qlnt.constants.AppUserRole;
 import com.tainika.qlnt.qlnt.constants.Message;
 import com.tainika.qlnt.qlnt.constants.AppUserPermission;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +27,12 @@ public class RoleService {
         Role r = roleRepository.findByRoleCode(Strings.nullToEmpty(code));
         try {
             if (r == null) {
-                return new MessageResultService<>(Message.ACTION.SEARCH, Message.ALERT.NO_RESULT, null).widthFailureResponse();
+                return new MessageResultService<>(Message.ACTION.SEARCH, Message.ALERT.NO_RESULT, null).withFailureResponse();
             }
         } catch (Exception ex) {
-            return new MessageResultService<>(Message.ACTION.SEARCH, ex.getMessage(), null).widthErrorResponse();
+            return new MessageResultService<>(Message.ACTION.SEARCH, ex.getMessage(), null).withErrorResponse();
         }
-        return new MessageResultService<>(Message.ACTION.SEARCH, r).widthSuccessResponse();
+        return new MessageResultService<>(Message.ACTION.SEARCH, r).withSuccessResponse();
     }
 
     public MessageResultService<?> create(String code) {
@@ -49,7 +48,7 @@ public class RoleService {
 
             if (lsAuth.isEmpty()) {
                 return new MessageResultService<>(Message.ACTION.CREATE, "List auth can't be created", null)
-                        .widthFailureResponse();
+                        .withFailureResponse();
             }
 
             Role r = new Role();
@@ -58,9 +57,9 @@ public class RoleService {
             r.setCreateTime(new Date());
             r.setUpdateTime(new Date());
             roleRepository.save(r);
-            return new MessageResultService<>(Message.ACTION.CREATE, r).widthSuccessResponse();
+            return new MessageResultService<>(Message.ACTION.CREATE, r).withSuccessResponse();
         } catch (Exception ex) {
-            return new MessageResultService<>(Message.ACTION.CREATE, ex.getMessage(), null).widthErrorResponse();
+            return new MessageResultService<>(Message.ACTION.CREATE, ex.getMessage(), null).withErrorResponse();
         }
     }
 }

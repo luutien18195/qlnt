@@ -7,7 +7,6 @@ import com.tainika.qlnt.qlnt.repository.UserRepository;
 import com.tainika.qlnt.qlnt.constants.Message;
 import com.tainika.qlnt.qlnt.constants.Status;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,13 +33,13 @@ public class RegistrationService {
             boolean isExistedUser = userRepository.isExistedUserName(user.getUserName());
             if (isExistedUser) {
                 return new MessageResultService<>(Message.ACTION.SIGN_UP, Message.ALERT.USER_EXISTED, null)
-                        .widthFailureResponse();
+                        .withFailureResponse();
             }
 
             boolean isExistedEmail = userRepository.isExistedEmail(user.getEmail());
             if (isExistedEmail) {
                 return new MessageResultService<>(Message.ACTION.SIGN_UP, Message.ALERT.EMAIL_EXISTED, null)
-                        .widthFailureResponse();
+                        .withFailureResponse();
             }
 
             user.setPassword(encoder.encode(user.getPassword()));
@@ -51,13 +50,13 @@ public class RegistrationService {
             MessageResultService<?> oldRole = roleService.findByRoleCode(AppUserRole.GUEST.getCode());
             if (oldRole.getStatus().equals(Status.COMMON.ERROR)) {
                 return new MessageResultService<>(Message.ACTION.SIGN_UP, oldRole.getResponseMessage() ,null)
-                        .widthFailureResponse();
+                        .withErrorResponse();
             } else if (oldRole.getStatus().equals(Status.COMMON.FAILURE)) {
                 MessageResultService<?> newRole = roleService.create(AppUserRole.GUEST.getCode());
 
                 if (newRole.getStatus().equals(Status.COMMON.ERROR)) {
                     return new MessageResultService<>(Message.ACTION.SIGN_UP, newRole.getResponseMessage() ,null)
-                            .widthFailureResponse();
+                            .withFailureResponse();
                 } else {
                     Role r = (Role) newRole.getItem();
                     user.setRole(r);
@@ -70,10 +69,10 @@ public class RegistrationService {
             }
 
             User rUser = userRepository.save(user);
-            return new MessageResultService<>(Message.ACTION.SIGN_UP, rUser).widthSuccessResponse();
+            return new MessageResultService<>(Message.ACTION.SIGN_UP, rUser).withSuccessResponse();
         } catch (Exception err) {
             return new MessageResultService<>(Message.ACTION.SIGN_UP, err.getMessage(), null)
-                    .widthErrorResponse();
+                    .withErrorResponse();
         }
     }
 }

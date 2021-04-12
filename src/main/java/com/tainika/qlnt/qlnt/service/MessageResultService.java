@@ -34,21 +34,21 @@ public class MessageResultService<T> {
         this.item = item;
     }
 
-    public MessageResultService<T> widthSuccessResponse() {
+    public MessageResultService<T> withSuccessResponse() {
         this.responseMessage = String.format(Message.LOG.ACTION_SUCCESS.getName(), action, content);
         this.status = Status.COMMON.SUCCESS;
         log.info(responseMessage);
         return this;
     }
 
-    public MessageResultService<T> widthFailureResponse() {
+    public MessageResultService<T> withFailureResponse() {
         this.responseMessage = String.format(Message.LOG.ACTION_FAIL.getName(), action, content);
         this.status = Status.COMMON.FAILURE;
         log.info(responseMessage);
         return this;
     }
 
-    public MessageResultService<T> widthErrorResponse() {
+    public MessageResultService<T> withErrorResponse() {
         this.responseMessage = String.format(Message.LOG.ACTION_ERROR.getName(), action, content);
         this.status = Status.COMMON.ERROR;
         log.error(responseMessage);

@@ -7,9 +7,9 @@ public class AuthRequest {
     public AuthRequest() {
     }
 
-    public AuthRequest(String userName, String passwork) {
+    public AuthRequest(String userName, String password) {
         this.username = userName;
-        this.password = passwork;
+        this.password = password;
     }
 
     public String getUsername() {
